@@ -1,0 +1,16 @@
+PODS:
+  - SwiftDevice (0.1.0)
+
+DEPENDENCIES:
+  - SwiftDevice (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftDevice:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SwiftDevice: f128ff3d58321a725bc12e8be6bb95a8c8dd0a0e
+
+PODFILE CHECKSUM: 5ab260a9d79015856a2e3ee62d82019ea40b962d
+
+COCOAPODS: 1.0.1

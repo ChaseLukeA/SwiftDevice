@@ -1,0 +1,6 @@
+use_frameworks!
+target 'SwiftDevice_Tests' do
+  pod 'SwiftDevice', :path => '../'
+  
+  
+end

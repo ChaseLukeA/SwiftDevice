@@ -8,9 +8,9 @@ I wanted a much simpler, friendly way to access the device type and orientation 
 
 ##About and Usage
 
-No initialization or declaration is needed to use SwiftDevice. Just use `Device` by calling `Device.<method>` anywhere you need to get the device's 'type' (`.getType()`), 'orientation' (`.getOrientation()`), or both (`.getTypeAndOrientation()`)
+No initialization or declaration is needed to use SwiftDevice. Just use `Device` by calling `Device.<method>` anywhere you need to get the device's type (`Device.type()`), orientation (`Device.orientation()`), or both (`Device.typeAndOrientation()`)
 
-There are three different '.Value' enums that `Device` uses:
+There are three different '.Value' enums that `Device` uses (which can be used directly with Device.TYPE.<value> but aren't required to be):
 
 ```
 TYPE:
@@ -47,7 +47,7 @@ You can use these types as an assigned variable:
 
 ```
 // infers variable is type Device.TYPE_AND_ORIENTATION
-let myDevice = Device.getTypeAndOrientation()
+let myDevice = Device.typeAndOrientation()
 ```
 
 Then access it later like so, without the need for `== Device.TYPE_AND_ORIENTATION.PhoneLandscape`:
@@ -72,24 +72,24 @@ With SwiftDevice's `Device` object, you can type this instead:
 
 ```
 // returns a simpler enum like .Landscape or .Portrait
-Device.getOrientation()
+Device.orientation()
 
 // still returns an enum like .Pad or .Phone
-Device.getType()
+Device.type()
 ```
 
 The best part added is the ability to get both type _and_ orientation in the same call:
 
 ```
 // returns an enum like .PadLandscape or .PhonePortrait
-Device.getTypeAndOrientation()
+Device.typeAndOrientation()
 ```
 
 If you still really wanted the exact, detailed orientations that Apple provides instead:
 
 ```
 // returns same as UIDevice.currentDevice().orientation
-Device.getOrientationDetail()
+Device.orientationDetail()
 ```
 
 ## Examples of Use
@@ -97,7 +97,7 @@ Device.getOrientationDetail()
 Example checking if an iPad is being used in Landscape mode (because Auto Layout won't let you set constraints different for Portrait and Landscape on an iPad):
 
 ```
-if Device.getTypeAndOrientation() == .PadLandscape {
+if Device.typeAndOrientation() == .PadLandscape {
 	// do something different
 } else {
 	// do the default thing
@@ -123,7 +123,7 @@ Example checking if a device is in Landscape or Portrait for deciding if a top l
 	        let changeHeight = ceil(signInButtonBottom - keyboardTop) + keyboardMargin
 	            
 	        if changeHeight > 0 {
-	            if Device.getTypeAndOrientation() == .PhoneLandscape {
+	            if Device.typeAndOrientation() == .PhoneLandscape {
 	                logoImage.hidden = true  // completely hide the image if using an iPhone in Lanscape
 	            } else {
 	            	// do something like shrink the image the same amount the sign-in button needs to come up
@@ -146,7 +146,7 @@ Add to your Xcode project's Podfile:
 ```
 use_frameworks!
 
-pod 'SwiftDevice', '0.1.0' 
+pod 'SwiftDevice', '0.1.1' 
 ```
 
 ...Install it to your project:

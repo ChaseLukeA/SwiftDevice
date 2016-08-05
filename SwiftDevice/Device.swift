@@ -9,8 +9,9 @@
 
 import UIKit
 
-struct Device {
-    enum TYPE : Int {
+public class Device : NSObject {
+    
+    public enum TYPE : Int {
         case Unspecified  // 0
         case Phone        // 1
         case Pad          // 2
@@ -18,13 +19,13 @@ struct Device {
         case CarPlay      // 4
     }
     
-    enum ORIENTATION : Int {
+    public enum ORIENTATION : Int {
         case Unknown             // 0
         case Portrait            // 1
         case Landscape           // 2
     }
     
-    enum TYPE_AND_ORIENTATION : Int {
+    public enum TYPE_AND_ORIENTATION : Int {
         case UnspecifiedPortrait = 0
         case UnspecifiedLandscape = 1
         case UnspecifiedUnknown = 2
@@ -42,7 +43,7 @@ struct Device {
         case CarPlayLandscape = 42
     }
     
-    static func type() -> TYPE {
+    public class func type() -> TYPE {
         switch UIDevice.currentDevice().userInterfaceIdiom {
         case .Phone:
             return .Phone
@@ -59,11 +60,11 @@ struct Device {
     
     // Get *all* specific orientations provided by Apple; additional orientations:
     // PortraitUpsideDown, LandscapeLeft, LandscapeRight, FaceUp, FaceDown
-    static func orientationDetail() -> UIDeviceOrientation {
+    public class func orientationDetail() -> UIDeviceOrientation {
         return UIDevice.currentDevice().orientation
     }
     
-    static func orientation() -> ORIENTATION {
+    public class func orientation() -> ORIENTATION {
         switch UIDevice.currentDevice().orientation {
         case .Portrait:
             return .Portrait
@@ -78,7 +79,7 @@ struct Device {
         }
     }
     
-    static func typeAndOrientation() -> TYPE_AND_ORIENTATION {
+    public class func typeAndOrientation() -> TYPE_AND_ORIENTATION {
         let device = (type().rawValue * 10) + orientation().rawValue
         return TYPE_AND_ORIENTATION.init(rawValue: device)!
     }

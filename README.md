@@ -10,7 +10,7 @@ I wanted a much simpler, friendly way to access the device type and orientation 
 
 No initialization or declaration is needed to use SwiftDevice. Just use `Device` by calling `Device.<method>` anywhere you need to get the device's type (`Device.type()`), orientation (`Device.orientation()`), or both (`Device.typeAndOrientation()`)
 
-There are three different '.Value' enums that `Device` uses (which can be used directly with Device.TYPE.<value> but aren't required to be):
+There are three different '.Value' enums that `Device` uses (which can be used directly with Device.<ENUM>.<value> but aren't required to be):
 
 ```
 TYPE:
@@ -146,7 +146,7 @@ Add to your Xcode project's Podfile:
 ```
 use_frameworks!
 
-pod 'SwiftDevice', '0.1.1' 
+pod 'SwiftDevice', '0.1.2' 
 ```
 
 ...Install it to your project:

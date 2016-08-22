@@ -2,6 +2,8 @@
 
 Instantly get the type and orientation of your iOS device for doing different things in code! SwiftDevice is a friendly implementation of Apple's UIDevice.currentDevice().orientation and UIDevice.currentDevice().UIInterfaceOrientation return values.
 
+---
+
 ##Background
 
 I wanted a much simpler, friendly way to access the device type and orientation of the iOS device an app is currently running on for programatically changing things based on what device I'm using and how I'm holding it. Hence SwiftDevice's `Device` came into existence. Since I didn't really care if the device was being held LandscapeLeft or LandscapeRight, or if it was PortraitUpsideDown, I ommitted those options and just use 'Portrait' and 'Landscape' instead.
@@ -10,7 +12,7 @@ I wanted a much simpler, friendly way to access the device type and orientation 
 
 No initialization or declaration is needed to use SwiftDevice. Just use `Device` by calling `Device.<method>` anywhere you need to get the device's type (`Device.type()`), orientation (`Device.orientation()`), or both (`Device.typeAndOrientation()`)
 
-There are three different '.Value' enums that `Device` uses (which can be used directly with Device.<ENUM>.<value> but aren't required to be):
+There are three different `.[value]` enums that `Device` uses (which can be used directly with Device.[ENUM_NAME].[value] but aren't required to be):
 
 ```
 TYPE:
@@ -58,7 +60,9 @@ if myDevice == .PhoneLandscape {
 }
 ```
 
-Normally if you wanted to know your device type, you'd type:
+---
+
+How does this differ from Apple's way? Normally if you wanted to know your device type, you'd type:
 
 ```
 // returns an enum like .LandscapeLeft or .PortraitUpsideDown
@@ -85,12 +89,14 @@ The best part added is the ability to get both type _and_ orientation in the sam
 Device.typeAndOrientation()
 ```
 
-If you still really wanted the exact, detailed orientations that Apple provides instead:
+...And if you still really wanted the exact, detailed orientations that Apple provides instead:
 
 ```
 // returns same as UIDevice.currentDevice().orientation
 Device.orientationDetail()
 ```
+
+---
 
 ## Examples of Use
 
@@ -98,7 +104,7 @@ Example checking if an iPad is being used in Landscape mode (because Auto Layout
 
 ```
 if Device.typeAndOrientation() == .PadLandscape {
-	// do something different
+	// do something different for Pad in Lanscape
 } else {
 	// do the default thing
 }
@@ -139,6 +145,8 @@ Example checking if a device is in Landscape or Portrait for deciding if a top l
 	}
 ```
 
+---
+
 ## Quick Start
 
 Add to your Xcode project's Podfile:
@@ -166,6 +174,8 @@ $ open MyProject.xcworkspace
 ```
 import SwiftDevice
 ```
+
+---
 
 ##Credits
 

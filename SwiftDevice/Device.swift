@@ -9,7 +9,7 @@
 
 import UIKit
 
-public class MyDevice : NSObject {
+public class Device : NSObject {
     
     /**
      The physical type of the device

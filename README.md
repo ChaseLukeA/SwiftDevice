@@ -225,7 +225,7 @@ Add to your Xcode project's Podfile:
 ```
 use_frameworks!
 
-pod 'SwiftDevice', '0.2.0' 
+pod 'SwiftDevice', '0.2.1' 
 ```
 
 ...Install it to your project:

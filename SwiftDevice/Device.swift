@@ -9,10 +9,10 @@
 
 import UIKit
 
-public class Device : NSObject {
+public class MyDevice : NSObject {
     
     /**
-     Device type enum
+     The physical type of the device
      */
     public enum TYPE : Int {
         case Unspecified       // = 0
@@ -23,7 +23,7 @@ public class Device : NSObject {
     }
     
     /**
-     Device orientation enum
+     The screen orientation of the device
      */
     public enum ORIENTATION : Int {
         case Unknown           // = 0
@@ -32,8 +32,8 @@ public class Device : NSObject {
     }
     
     /**
-     Device type and orientation enum
-
+     The physical type and screen orientation of the device
+     
      Math at its finest! The combination of both TYPE and ORIENTATION is the sum of the TYPE [in the tens place] and the ORIENTATION [in the ones place]
      */
     public enum TYPE_AND_ORIENTATION : Int {
@@ -55,16 +55,29 @@ public class Device : NSObject {
     }
     
     /**
-     Get the "type" of device currently being used.
+     The battery status of the device
+     */
+    public enum BATTERY_STATUS : Int {
+        case Unknown
+        case Charging
+        case Full
+        case Unplugged
+    }
+    
+    /**
+     The proximity to user of the device
+     */
+    public enum PROXIMITY_TO_USER : Int {
+        case Unknown
+        case CloseToUser
+        case AwayFromUser
+    }
+    
+    /**
      
+     Get the "physical type" of device currently being used
      - returns:
-        enum TYPE : Int {
-            case Phone
-            case Pad
-            case TV
-            case CarPlay
-            case Unspecified
-        }
+     .Phone / .Pad / .TV / .CarPlay / .Unspecified
      */
     public class func type() -> TYPE {
         switch UIDevice.currentDevice().userInterfaceIdiom {
@@ -82,14 +95,10 @@ public class Device : NSObject {
     }
     
     /**
-     Get the "orientation" of the device currently being used.
+     Get the "screen orientation" of the device currently being used
      
      - returns:
-        enum ORIENTATION : Int {
-            case Portrait
-            case Landscape
-            case Unknown
-        }
+     .Portrait / .Landscape / .Unknown
      */
     public class func orientation() -> ORIENTATION {
         switch UIDevice.currentDevice().orientation {
@@ -107,48 +116,207 @@ public class Device : NSObject {
     }
     
     /**
-     Get the [fully Apple-specified] "orientation" of the device currently being used.
+     Get the [fully Apple-specified] "screen orientation" of the device currently being used
      
      - returns:
-        enum UIDeviceOrientation : Int {
-            case Unknown
-            case Portrait
-            case PortraitUpsideDown
-            case LandscapeLeft
-            case LandscapeRight
-            case FaceUp
-            case FaceDown
-        }
+     .Portrait / .PortraitUpsideDown / .LandscapeLeft / .LandscapeRight / .FaceUp / .FaceDown / .Unknown
      */
     public class func orientationDetail() -> UIDeviceOrientation {
         return UIDevice.currentDevice().orientation
     }
     
     /**
-     Get the "type and orientation" of the device currently being used.
+     Get the "physical type and screen orientation" of the device currently being used
      
      - returns:
-        enum TYPE_AND_ORIENTATION : Int {
-            case UnspecifiedPortrait
-            case UnspecifiedLandscape
-            case UnspecifiedUnknown
-            case PhoneUnknown
-            case PhonePortrait
-            case PhoneLandscape
-            case PadUnknown
-            case PadPortrait
-            case PadLandscape
-            case TVUnknown
-            case TVPortrait
-            case TVLandscape
-            case CarPlayUnknown
-            case CarPlayPortrait
-            case CarPlayLandscape
-        }
+     .UnspecifiedPortrait / .UnspecifiedLandscape / .UnspecifiedUnknown / .PhoneUnknown / .PhonePortrait / .PhoneLandscape / .PadUnknown / .PadPortrait / .PadLandscape / .TVUnknown / .TVPortrait / .TVLandscape / .CarPlayUnknown / .CarPlayPortrait / .CarPlayLandscape
      */
     public class func typeAndOrientation() -> TYPE_AND_ORIENTATION {
-        let device = (type().rawValue * 10) + orientation().rawValue
+        let device = (self.type().rawValue * 10) + self.orientation().rawValue
         return TYPE_AND_ORIENTATION.init(rawValue: device)!
     }
-
+    
+    /**
+     Get the "battery charging status" of the device currently being used
+     
+     - returns:
+     .Charging / .Full / .Unplugged / .Unknown
+     */
+    public class func batteryStatus() -> BATTERY_STATUS {
+        switch UIDevice.currentDevice().batteryState {
+        case .Charging:
+            return .Charging
+        case .Full:
+            return .Full
+        case .Unplugged:
+            return .Unplugged
+        default:
+            // UIDevice.currentDevice().batteryMonitoringEnabled is 'false' OR state is truly unknown
+            return .Unknown
+        }
+    }
+    
+    /**
+     Get the "current battery level" of the device currently being used
+     
+     - returns:
+     Float of [0.0] to [100.0] for percent full / [-1.0] for no value detected
+     */
+    public class func batteryLevel() -> Float {
+        if UIDevice.currentDevice().batteryMonitoringEnabled {
+            return UIDevice.currentDevice().batteryLevel
+        } else {
+            return -1.0
+        }
+    }
+    
+    /**
+     Get the "proximity to the user" of the device currently being used
+     
+     - returns:
+     .CloseToUser / .AwayFromUser / .Unknown
+     */
+    public class func proximityToUser() -> PROXIMITY_TO_USER {
+        if UIDevice.currentDevice().proximityMonitoringEnabled {
+            switch UIDevice.currentDevice().proximityState {
+            case true:
+                return .CloseToUser
+            case false:
+                return .AwayFromUser
+            }
+        } else {
+            return .Unknown
+        }
+    }
+    
+    /**
+     Get the "device name" of the device currently being used
+     
+     - returns:
+     String containing the device name
+     */
+    public class func name() -> String {
+        return UIDevice.currentDevice().name
+    }
+    
+    /**
+     Get the "device model" of the device currently being used
+     
+     - returns:
+     String containing the device model
+     */
+    public class func model() -> String {
+        return UIDevice.currentDevice().model
+    }
+    
+    /**
+     Get the "operating system name" of the device currently being used
+     
+     - returns:
+     String containing the device operating system name
+     */
+    public class func osName() -> String {
+        return UIDevice.currentDevice().systemName
+    }
+    
+    /**
+     Get the "operating system version" of the device currently being used
+     
+     - returns:
+     String containing the device operating system version number
+     */
+    public class func osVersion() -> String {
+        return UIDevice.currentDevice().systemVersion
+    }
+    
+    /**
+     Get the "operating system name and version" of the device currently being used
+     
+     - returns:
+     String containing the device operating system name and version number
+     */
+    public class func os() -> String {
+        return self.osName() + " " + self.osVersion()
+    }
+    
+    /**
+     Get the "id for vendor" of the device currently being used
+     
+     - returns:
+     Strinc containing the "identification for vendor" string
+     */
+    public class func idForVendor() -> String {
+        return (UIDevice.currentDevice().identifierForVendor?.UUIDString)!
+    }
+    
+    /**
+     Get whether the device currently being used "has physical GPS hardware or not"
+     
+     - returns:
+     Boolean
+     
+     - Note:
+     The GPS capability of the device returned is based on the actual hardware identifier that Apple uses for its devices (example: iPad5,3); the device list was created with a combination of Apple's official [iOS Device Compatibility Reference](https://developer.apple.com/library/ios/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/DeviceCompatibilityMatrix/DeviceCompatibilityMatrix.html) and hardware identifiers from [EveryMac.com](http://www.everymac.com/)
+     */
+    public class func hasGPS() -> Bool {
+        // NOTE: I chose the "non-capable" devices for this list because this list is a whole lot smaller
+        let nonGPSCapableDevices: [String] = [
+            "iPhone1,1",
+            "iPod1,1",
+            "iPod2,1",
+            "iPod3,1",
+            "iPod4,1",
+            "iPod5,1",
+            "iPad1,1",
+            "iPad2,1",
+            "iPad2,4",
+            "iPad2,5",
+            "iPad2,6",
+            "iPad3,1",
+            "iPad3,4",
+            "iPad4,1",
+            "iPad4,4",
+            "iPad4,7",
+            "iPad5,1",
+            "iPad5,3",
+            "iPad6,3",
+            "iPad6,7",
+        ]
+        
+        let hardware = self.hardwareIdentifier()
+        
+        if hardware != "Unknown" {
+            return nonGPSCapableDevices.contains(hardware)
+        } else { // an error getting hardware identifier string occurred
+            return false
+        }
+    }
+    
+    /**
+     Get the "hardware identifier" of the device currently being used (example "iPad5,3")
+     
+     - returns:
+     String containing device hardware identifier string
+     
+     ***Credit:*** this code is a modified version of the DeviceGuru.swift function hardwareString() from [DeviceGuru](https://github.com/InderKumarRathore/DeviceGuru)
+     */
+    public static func hardwareIdentifier() -> String {
+        var name: [Int32] = [CTL_HW, HW_MACHINE]
+        var size: Int = 2
+        sysctl(&name, 2, nil, &size, &name, 0)
+        var hw_machine = [CChar](count: Int(size), repeatedValue: 0)
+        sysctl(&name, 2, &hw_machine, &size, &name, 0)
+        
+        if let hardware = String.fromCString(hw_machine) {
+            // check if device is a simulator
+            if hardware == "i386" || hardware == "x86_64" {
+                return self.name()
+            } else {
+                return hardware
+            }
+        } else { // an error getting hardware identifier string occurred
+            return "Unknown"
+        }
+    }
+    
 }

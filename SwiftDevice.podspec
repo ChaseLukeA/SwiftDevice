@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftDevice'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = "Instantly get the type and orientation of your iOS device for doing different things in code!"
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-"A simpler, friendlier way to access device type and orientation of iOS device for programatically doing things based on what device is being used and how its being held. A wrapper implementation of UIDevice.currentDevice().UIInterfaceOrientation and UIDevice.currentDevice().orientation."
+"A simpler, friendlier way to access device type and orientation of iOS device for programatically doing things based on what device is being used and how its being held. Contains simpler 'type', 'orientation', and a combination 'typeAndOrientation' values, plus the default Apple-specified 'orientation' types are still there as well."
                        DESC
 
   s.homepage         = 'https://github.com/ChaseLukeA/SwiftDevice'

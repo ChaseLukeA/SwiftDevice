@@ -1,6 +1,8 @@
 #SwiftDevice
 
-Instantly get the type and orientation of your iOS device for doing different things in code! SwiftDevice is a friendly implementation of Apple's UIDevice.currentDevice().orientation and UIDevice.currentDevice().UIInterfaceOrientation return values.
+Instantly get the type and orientation of your iOS device for doing different things in code!
+
+SwiftDevice is a friendly implementation of Apple's UIDevice.currentDevice().orientation and UIDevice.currentDevice().UIInterfaceOrientation return values.
 
 ---
 
@@ -8,9 +10,11 @@ Instantly get the type and orientation of your iOS device for doing different th
 
 I wanted a much simpler, friendly way to access the device type and orientation of the iOS device an app is currently running on for programatically changing things based on what device I'm using and how I'm holding it. Hence SwiftDevice's `Device` came into existence. Since I didn't really care if the device was being held LandscapeLeft or LandscapeRight, or if it was PortraitUpsideDown, I ommitted those options and just use 'Portrait' and 'Landscape' instead.
 
+---
+
 ##About and Usage
 
-No initialization or declaration is needed to use SwiftDevice. Just use `Device` by calling `Device.<method>` anywhere you need to get the device's type (`Device.type()`), orientation (`Device.orientation()`), or both (`Device.typeAndOrientation()`)
+No initialization or declaration is needed to use SwiftDevice. Just use `Device` by calling `Device.[method]` anywhere you need to get the device's type (`Device.type()`), orientation (`Device.orientation()`), or both (`Device.typeAndOrientation()`)
 
 There are three different `.[value]` enums that `Device` uses (which can be used directly with Device.[ENUM_NAME].[value] but aren't required to be):
 
@@ -52,11 +56,11 @@ You can use these types as an assigned variable:
 let myDevice = Device.typeAndOrientation()
 ```
 
-Then access it later like so, without the need for `== Device.TYPE_AND_ORIENTATION.PhoneLandscape`:
+Then access it later like so, without the need for `[something] == Device.TYPE_AND_ORIENTATION.PhoneLandscape`:
 
 ```
 if myDevice == .PhoneLandscape {
-	// do something great
+	// do something great!
 }
 ```
 
@@ -82,7 +86,7 @@ Device.orientation()
 Device.type()
 ```
 
-The best part added is the ability to get both type _and_ orientation in the same call:
+The *best part* I've added is the ability to get both type *and* orientation in the same call:
 
 ```
 // returns an enum like .PadLandscape or .PhonePortrait
@@ -154,7 +158,7 @@ Add to your Xcode project's Podfile:
 ```
 use_frameworks!
 
-pod 'SwiftDevice', '0.1.3' 
+pod 'SwiftDevice', '0.1.4' 
 ```
 
 ...Install it to your project:

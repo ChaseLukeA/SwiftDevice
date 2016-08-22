@@ -33,6 +33,8 @@ public class Device : NSObject {
     
     /**
      Device type and orientation enum
+
+     Math at its finest! The combination of both TYPE and ORIENTATION is the sum of the TYPE [in the tens place] and the ORIENTATION [in the ones place]
      */
     public enum TYPE_AND_ORIENTATION : Int {
         case UnspecifiedPortrait  = 0
@@ -105,7 +107,7 @@ public class Device : NSObject {
     }
     
     /**
-     Get the [full Apple-specified] "orientation" of the device currently being used.
+     Get the [fully Apple-specified] "orientation" of the device currently being used.
      
      - returns:
         enum UIDeviceOrientation : Int {
@@ -148,4 +150,5 @@ public class Device : NSObject {
         let device = (type().rawValue * 10) + orientation().rawValue
         return TYPE_AND_ORIENTATION.init(rawValue: device)!
     }
+
 }

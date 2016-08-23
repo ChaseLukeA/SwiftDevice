@@ -74,7 +74,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     CarPlayLandscape
   ```
 
-***`Device.batteryStatus()`*** - Get the "battery charging status" of the device (i.e. "Charging", "Unplugged"); this depends on the batteryMonitoringEnabled property being set to "true"
+***`Device.batteryStatus()`*** - Get the "battery charging status" of the device (i.e. "Charging", "Unplugged"); this depends on the battery monitor being enabled, and auto-enables it if not
 
   ```
   BATTERY_STATUS:
@@ -84,9 +84,13 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     Unplugged
   ```
 
+***`Device.enableBatteryMonitor()`*** - Turns the battery monitor capability ON
+
+***`Device.disableBatteryMonitor()`*** - Turns the battery monitor capability OFF
+
 ***`Device.batteryLevel()`*** - Get the "current battery level" of the device (i.e. 75.0)
 
-***`Device.proximityToUser()`*** - Get the "proximity to the user" of proximity sensor (if enabled) of the device (i.e. "CloseToUser"); this depends on the proximityMonitoringEnabled property being set to "true"
+***`Device.proximityToUser()`*** - Get the "proximity to the user" of proximity sensor (if enabled) of the device (i.e. "CloseToUser"); this depends on the proximity monitor being enabled, and auto-enables it if not
 
   ```
   PROXIMITY_TO_USER:
@@ -94,6 +98,10 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     CloseToUser
     AwayFromUser
   ```
+
+***`Device.enableProximityMonitor()`*** - Turns the proximity monitor capability ON
+
+***`Device.disableProximityMonitor()`*** - Turns the proximity monitor capability OFF
 
 ***`Device.name()`*** - Get the "name" of the device, as found in Settings > General > About 
 

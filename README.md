@@ -1,3 +1,5 @@
+![SwiftDevice](https://github.com/ChaseLukeA/SwiftDevice/SwiftDevice.jpg)
+
 #SwiftDevice
 
 Instantly get detailed information (such as type, orientation, and GPS capabilities) on your iOS device for doing different things in code!
@@ -121,32 +123,36 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
 
 ---
 
+###Method Use Examples
+
 The different `.[value]` enums that `Device` uses could be used directly with `Device.[ENUM_NAME].[value]`, but aren't required to be. Use type inference instead!
 
 You can use these types as an assigned variable:
 
-```
-// infers variable is type Device.TYPE_AND_ORIENTATION
-let myDevice = Device.typeAndOrientation()
-```
+  ```
+  // infers variable is type Device.TYPE_AND_ORIENTATION
+  let myDevice = Device.typeAndOrientation()
+  ```
 
 Then access it later like so, without the need for `[something] == Device.TYPE_AND_ORIENTATION.PhoneLandscape`:
 
-```
-if myDevice == .PhoneLandscape {
-	// do something great!
-}
-```
+  ```
+  if myDevice == .PhoneLandscape {
+    // do something great!
+  }
+  ```
 
 Or use type inference to access it directly like so:
 
-```
-if Device.proximityToUser() == .CloseToUser {
-  // do something like shut the screen off -- they can't see the screen when their phone is against their ear!
-}
-```
+  ```
+  if Device.proximityToUser() == .CloseToUser {
+    // do something like shut the screen off -- they can't see the screen when their phone is against their ear!
+  }
+  ```
 
 ---
+
+###More
 
 So how does the `Device` class differ from Apple's provision? Readability, and additional features!
 
@@ -194,17 +200,17 @@ How about an answer to the question "Does this device have a GPS chip in it?":
 
 ---
 
-##Some Code Examples
+##Code Samples
 
 Example checking if an iPad is being used in Landscape mode to layout the GUI (because Auto Layout won't let you set constraints different for Portrait and Landscape on an iPad):
 
-```
-if Device.typeAndOrientation() == .PadLandscape {
-	// do something different for Pad in Lanscape
-} else {
-	// do the default thing
-}
-```
+  ```
+  if Device.typeAndOrientation() == .PadLandscape {
+    // do something different for an iPad in Landscape
+  } else {
+    // do yer default thang
+  }
+  ```
 
 Example checking if a device is in Landscape or Portrait, then controlling if a top logo should stay showing when the keyboard pushes the view up when using Auto Layout:
 
@@ -247,29 +253,29 @@ Example checking if a device is in Landscape or Portrait, then controlling if a 
 
 Add to your Xcode project's Podfile:
 
-```
-use_frameworks!
+  ```
+  use_frameworks!
 
-pod 'SwiftDevice', '0.2.3'
-```
+  pod 'SwiftDevice', '0.2.3'
+  ```
 
 ...Install it to your project:
 
-```
-$ pod install
-```
+  ```
+  $ pod install
+  ```
 
 ...Open your project in Xcode from the .xcworkspace file:
 
-```
-$ open MyProject.xcworkspace
-```
+  ```
+  $ open [YourProjectName].xcworkspace
+  ```
 
-...And import the SwiftDevice framework into your files:
+...And import the SwiftDevice framework into the files you want to use `Device` in:
 
-```
-import SwiftDevice
-```
+  ```
+  import SwiftDevice
+  ```
 
 ---
 

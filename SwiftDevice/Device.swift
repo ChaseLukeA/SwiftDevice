@@ -34,7 +34,7 @@ public class Device : NSObject {
     /**
      The physical type and screen orientation of the device
      
-     Math at its finest! The combination of both TYPE and ORIENTATION is the sum of the TYPE [in the tens place] and the ORIENTATION [in the ones place]
+     Simple math at its finest! The combination enum TYPE_AND_ORIENTATION is a sum of the TYPE [in the tens place] and the ORIENTATION [in the ones place]
      */
     public enum TYPE_AND_ORIENTATION : Int {
         case UnspecifiedPortrait  = 0
@@ -74,10 +74,10 @@ public class Device : NSObject {
     }
     
     /**
-     
      Get the "physical type" of device currently being used
+
      - returns:
-     .Phone / .Pad / .TV / .CarPlay / .Unspecified
+     .Phone   .Pad   .TV   .CarPlay   .Unspecified
      */
     public class func type() -> TYPE {
         switch UIDevice.currentDevice().userInterfaceIdiom {
@@ -98,7 +98,7 @@ public class Device : NSObject {
      Get the "screen orientation" of the device currently being used
      
      - returns:
-     .Portrait / .Landscape / .Unknown
+     .Portrait   .Landscape   .Unknown
      */
     public class func orientation() -> ORIENTATION {
         switch UIDevice.currentDevice().orientation {
@@ -119,7 +119,7 @@ public class Device : NSObject {
      Get the [fully Apple-specified] "screen orientation" of the device currently being used
      
      - returns:
-     .Portrait / .PortraitUpsideDown / .LandscapeLeft / .LandscapeRight / .FaceUp / .FaceDown / .Unknown
+     .Portrait   .PortraitUpsideDown   .LandscapeLeft   .LandscapeRight   .FaceUp   .FaceDown   .Unknown
      */
     public class func orientationDetail() -> UIDeviceOrientation {
         return UIDevice.currentDevice().orientation
@@ -129,7 +129,7 @@ public class Device : NSObject {
      Get the "physical type and screen orientation" of the device currently being used
      
      - returns:
-     .UnspecifiedPortrait / .UnspecifiedLandscape / .UnspecifiedUnknown / .PhoneUnknown / .PhonePortrait / .PhoneLandscape / .PadUnknown / .PadPortrait / .PadLandscape / .TVUnknown / .TVPortrait / .TVLandscape / .CarPlayUnknown / .CarPlayPortrait / .CarPlayLandscape
+     .UnspecifiedPortrait   .UnspecifiedLandscape   .UnspecifiedUnknown   .PhoneUnknown   .PhonePortrait   .PhoneLandscape   .PadUnknown   .PadPortrait   .PadLandscape   .TVUnknown   .TVPortrait   .TVLandscape   .CarPlayUnknown   .CarPlayPortrait   .CarPlayLandscape
      */
     public class func typeAndOrientation() -> TYPE_AND_ORIENTATION {
         let device = (self.type().rawValue * 10) + self.orientation().rawValue
@@ -207,7 +207,7 @@ public class Device : NSObject {
 
      
      - returns:
-     .CloseToUser / .AwayFromUser / .Unknown
+     .CloseToUser   .AwayFromUser   .Unknown
      */
     public class func proximityToUser() -> PROXIMITY_TO_USER {
         if !UIDevice.currentDevice().proximityMonitoringEnabled {

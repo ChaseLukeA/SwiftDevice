@@ -139,17 +139,15 @@ public class Device : NSObject {
     /**
      Enable the current device's battery monitoring
      */
-    public class func enableBatteryMonitor() -> Bool {
+    public class func enableBatteryMonitor() {
         UIDevice.currentDevice().batteryMonitoringEnabled = true
-        return UIDevice.currentDevice().batteryMonitoringEnabled
     }
     
     /**
      Disable the current device's battery monitoring
      */
-    public class func disableBatteryMonitor() -> Bool {
-        UIDevice.currentDevice().batteryMonitoringEnabled = true
-        return UIDevice.currentDevice().batteryMonitoringEnabled
+    public class func disableBatteryMonitor() {
+        UIDevice.currentDevice().batteryMonitoringEnabled = false
     }
 
     /**
@@ -193,17 +191,15 @@ public class Device : NSObject {
     /**
      Enable the current device's proximity monitor
      */
-    public class func enableProximityMonitor() -> Bool {
+    public class func enableProximityMonitor() {
         UIDevice.currentDevice().proximityMonitoringEnabled = true
-        return UIDevice.currentDevice().proximityMonitoringEnabled
     }
     
     /**
      Disable the current device's proximity monitor
      */
-    public class func disableProximityMonitor() -> Bool {
-        UIDevice.currentDevice().proximityMonitoringEnabled = true
-        return UIDevice.currentDevice().proximityMonitoringEnabled
+    public class func disableProximityMonitor() {
+        UIDevice.currentDevice().proximityMonitoringEnabled = false
     }
     
     /**
@@ -215,9 +211,7 @@ public class Device : NSObject {
      */
     public class func proximityToUser() -> PROXIMITY_TO_USER {
         if !UIDevice.currentDevice().proximityMonitoringEnabled {
-            if !self.enableProximityMonitor() {
-              return .Unknown
-            }
+            self.enableProximityMonitor()
         }
 
         switch UIDevice.currentDevice().proximityState {

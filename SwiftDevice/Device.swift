@@ -215,7 +215,9 @@ public class Device : NSObject {
      */
     public class func proximityToUser() -> PROXIMITY_TO_USER {
         if !UIDevice.currentDevice().proximityMonitoringEnabled {
-            self.enableProximityMonitor()
+            if !self.enableProximityMonitor() {
+              return .Unknown
+            }
         }
 
         switch UIDevice.currentDevice().proximityState {
@@ -224,9 +226,6 @@ public class Device : NSObject {
         case false:
             return .AwayFromUser
         }
-
-        // proximity monitor error OR proximity is truly unknown
-        return .Unknown
     }
     
     /**

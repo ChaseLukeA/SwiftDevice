@@ -20,7 +20,7 @@ Upon using these functions, I discovered I also wanted to know if my device phys
 
 No initialization or declaration is needed to use SwiftDevice. Just use `Device` by calling `Device.[method]()` anywhere you need information about your device.
 
-***The methods are:***
+####The methods are:
 
 ***`Device.type()`*** - Get the "physical type" (i.e. "Pad", "TV")
 
@@ -76,6 +76,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     CarPlayLandscape
   ```
 
+
 ***`Device.batteryStatus()`*** - Get the "battery charging status" of the device (i.e. "Charging", "Unplugged"); this depends on the battery monitor being enabled, and auto-enables it if not
 
   ```
@@ -92,6 +93,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
 
 ***`Device.batteryLevel()`*** - Get the "current battery level" of the device (i.e. 75.0)
 
+
 ***`Device.proximityToUser()`*** - Get the "proximity to the user" of proximity sensor (if enabled) of the device (i.e. "CloseToUser"); this depends on the proximity monitor being enabled, and auto-enables it if not
 
   ```
@@ -104,6 +106,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
 ***`Device.enableProximityMonitor()`*** - Turns the proximity monitor capability ON
 
 ***`Device.disableProximityMonitor()`*** - Turns the proximity monitor capability OFF
+
 
 ***`Device.name()`*** - Get the "name" of the device, as found in Settings > General > About 
 
@@ -123,7 +126,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
 
 ---
 
-###Method Use Examples
+###Type Inference
 
 The different `.[value]` enums that `Device` uses could be used directly with `Device.[ENUM_NAME].[value]`, but aren't required to be. Use type inference instead!
 
@@ -152,9 +155,9 @@ Or use type inference to access it directly like so:
 
 ---
 
-###More
+##SwiftDevice In Action
 
-So how does the `Device` class differ from Apple's provision? Readability, and additional features!
+#####So how does the `Device` class differ from Apple's provision? Readability, and additional features!
 
 Normally if you wanted to know your device type or orientation, you'd type this:
 
@@ -200,7 +203,7 @@ How about an answer to the question "Does this device have a GPS chip in it?":
 
 ---
 
-##Code Samples
+##Some Code Samples
 
 Example checking if an iPad is being used in Landscape mode to layout the GUI (because Auto Layout won't let you set constraints different for Portrait and Landscape on an iPad):
 
@@ -256,7 +259,7 @@ Add to your Xcode project's Podfile:
   ```
   use_frameworks!
 
-  pod 'SwiftDevice', '0.2.3'
+  pod 'SwiftDevice', '0.2.4'
   ```
 
 ...Install it to your project:

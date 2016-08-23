@@ -137,12 +137,30 @@ public class Device : NSObject {
     }
     
     /**
-     Get the "battery charging status" of the device currently being used
+     Enable the current device's battery monitoring
+     */
+    public class func enableBatteryMonitor() -> Bool {
+        UIDevice.currentDevice().batteryMonitoringEnabled = true
+    }
+    
+    /**
+     Disable the current device's battery monitoring
+     */
+    public class func disableBatteryMonitor() -> Bool {
+        UIDevice.currentDevice().batteryMonitoringEnabled = true
+    }
+
+    /**
+     Get the "battery charging status" of the device currently being used; auto-enables battery monitor
      
      - returns:
      .Charging / .Full / .Unplugged / .Unknown
      */
     public class func batteryStatus() -> BATTERY_STATUS {
+        if !UIDevice.currentDevice().batteryMonitoringEnabled {
+            self.enableBatteryMonitor()
+        }
+
         switch UIDevice.currentDevice().batteryState {
         case .Charging:
             return .Charging
@@ -151,7 +169,7 @@ public class Device : NSObject {
         case .Unplugged:
             return .Unplugged
         default:
-            // UIDevice.currentDevice().batteryMonitoringEnabled is 'false' OR state is truly unknown
+            // battery monitor error OR status is truly unknown
             return .Unknown
         }
     }
@@ -171,22 +189,40 @@ public class Device : NSObject {
     }
     
     /**
-     Get the "proximity to the user" of the device currently being used
+     Enable the current device's proximity monitor
+     */
+    public class func enableProximityMonitor() -> Bool {
+        UIDevice.currentDevice().proximityMonitoringEnabled = true
+    }
+    
+    /**
+     Disable the current device's proximity monitor
+     */
+    public class func disableProximityMonitor() -> Bool {
+        UIDevice.currentDevice().proximityMonitoringEnabled = true
+    }
+    
+    /**
+     Get the "proximity to the user" of the device currently being used; auto-enables proximity monitor
+
      
      - returns:
      .CloseToUser / .AwayFromUser / .Unknown
      */
     public class func proximityToUser() -> PROXIMITY_TO_USER {
-        if UIDevice.currentDevice().proximityMonitoringEnabled {
-            switch UIDevice.currentDevice().proximityState {
-            case true:
-                return .CloseToUser
-            case false:
-                return .AwayFromUser
-            }
-        } else {
-            return .Unknown
+        if !UIDevice.currentDevice().proximityMonitoringEnabled {
+            self.enableProximityMonitor()
         }
+
+        switch UIDevice.currentDevice().proximityState {
+        case true:
+            return .CloseToUser
+        case false:
+            return .AwayFromUser
+        }
+
+        // proximity monitor error OR proximity is truly unknown
+        return .Unknown
     }
     
     /**

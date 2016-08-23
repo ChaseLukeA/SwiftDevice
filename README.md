@@ -20,7 +20,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
 
 ***The methods are:***
 
-`Device.type()` - Get the "physical type" (i.e. "Pad", "TV")
+***`Device.type()`*** - Get the "physical type" (i.e. "Pad", "TV")
 
   ```
   TYPE:
@@ -31,7 +31,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     CarPlay
   ```
 
-`Device.orientation()` - Get the "screen orientation" of the device (i.e. "Landscape")
+***`Device.orientation()`*** - Get the "screen orientation" of the device (i.e. "Landscape")
 
   ```
   ORIENTATION:
@@ -40,7 +40,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     Landscape
   ```
 
-`Device.orientationDetail()` - Get the [fully Apple-specified] "screen orientation" of the device (in case you REALLY need to know specifically which direction it was turned, but that doesn't usually matter)
+***`Device.orientationDetail()`*** - Get the [fully Apple-specified] "screen orientation" of the device (in case you REALLY need to know specifically which direction it was turned, but that doesn't usually matter)
 
   ```
   UIDeviceOrientation:
@@ -53,7 +53,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     Unknown
   ```
 
-`Device.typeAndOrientation()` - Get the "physical type and screen orientation" of the device (i.e. "PhonePortrait", "PadLandscape")
+***`Device.typeAndOrientation()`*** - Get the "physical type and screen orientation" of the device (i.e. "PhonePortrait", "PadLandscape")
 
   ```
   TYPE_AND_ORIENTATION:
@@ -74,7 +74,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     CarPlayLandscape
   ```
 
-`Device.batteryStatus()` - Get the "battery charging status" of the device (i.e. "Charging", "Unplugged"); this depends on the batteryMonitoringEnabled property being set to "true"
+***`Device.batteryStatus()`*** - Get the "battery charging status" of the device (i.e. "Charging", "Unplugged"); this depends on the batteryMonitoringEnabled property being set to "true"
 
   ```
   BATTERY_STATUS:
@@ -84,9 +84,9 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     Unplugged
   ```
 
-`Device.batteryLevel()` - Get the "current battery level" of the device (i.e. 75.0)
+***`Device.batteryLevel()`*** - Get the "current battery level" of the device (i.e. 75.0)
 
-`Device.proximityToUser()` - Get the "proximity to the user" of proximity sensor (if enabled) of the device (i.e. "CloseToUser"); this depends on the proximityMonitoringEnabled property being set to "true"
+***`Device.proximityToUser()`*** - Get the "proximity to the user" of proximity sensor (if enabled) of the device (i.e. "CloseToUser"); this depends on the proximityMonitoringEnabled property being set to "true"
 
   ```
   PROXIMITY_TO_USER:
@@ -95,25 +95,25 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     AwayFromUser
   ```
 
-`Device.name()` - Get the "name" of the device, as found in Settings > General > About 
+***`Device.name()`*** - Get the "name" of the device, as found in Settings > General > About 
 
-`Device.model()` - Get the "model" of the device (i.e "iPod touch")
+***`Device.model()`*** - Get the "model" of the device (i.e "iPod touch")
 
-`Device.osName()` - Get the "operating system name" of the device (i.e. "iPhone OS")
+***`Device.osName()`*** - Get the "operating system name" of the device (i.e. "iPhone OS")
 
-`Device.osVersion()` - Get the "operating system version" of the device (i.e. 9.2)
+***`Device.osVersion()`*** - Get the "operating system version" of the device (i.e. 9.2)
 
-`Device.os()` - Get the "operating system name and version" of the device (i.e. "iPad OS 8.1") 
+***`Device.os()`*** - Get the "operating system name and version" of the device (i.e. "iPad OS 8.1") 
 
-`Device.idForVendor()` - Get the "identification for vendor" string of the device (i.e. "AC295404-B9DA-4645-B13F-E89E36B94153")
+***`Device.idForVendor()`*** - Get the "identification for vendor" string of the device (i.e. "AC295404-B9DA-4645-B13F-E89E36B94153")
 
-`Device.hasGPS()` - Get the "GPS capability" of the device (i.e. "False" means "does not have GPS!")
+***`Device.hasGPS()`*** - Get the "GPS capability" of the device (i.e. "False" means "does not have GPS!")
 
-`Device.hardwareIdentifier()` - Get the "hardware identifier" of the device (i.e. "iPad5,3")
+***`Device.hardwareIdentifier()`*** - Get the "hardware identifier" of the device (i.e. "iPad5,3")
 
 ---
 
-There are a few different `.[value]` enums that `Device` uses, which can be used directly with `Device.[ENUM_NAME].[value]`, but aren't required to be
+The different `.[value]` enums that `Device` uses could be used directly with `Device.[ENUM_NAME].[value]`, but aren't required to be. Use type inference instead!
 
 You can use these types as an assigned variable:
 
@@ -130,7 +130,7 @@ if myDevice == .PhoneLandscape {
 }
 ```
 
-Or access it directly like so:
+Or use type inference to access it directly like so:
 
 ```
 if Device.proximityToUser() == .CloseToUser {
@@ -140,38 +140,55 @@ if Device.proximityToUser() == .CloseToUser {
 
 ---
 
-How does this `Device` class differ from Apple's provision? Normally if you wanted to know your device type or orientation, you'd type this:
+So how does the `Device` class differ from Apple's provision? Readability, and additional features!
 
-```
-// returns an enum like .LandscapeLeft or .PortraitUpsideDown
-UIDevice.currentDevice().UIInterfaceOrientation
+Normally if you wanted to know your device type or orientation, you'd type this:
 
-// returns an enum like .Pad or .Phone
-UIDevice.currentDevice().orientation
-```
+  ```
+  // returns an enum like .LandscapeLeft or .PortraitUpsideDown
+  UIDevice.currentDevice().UIInterfaceOrientation
+
+  // returns an enum like .Pad or .Phone
+  UIDevice.currentDevice().orientation
+  ```
 
 With SwiftDevice's `Device` object, you can type this instead:
 
-```
-// returns a simpler enum like .Landscape or .Portrait
-Device.orientation()
+  ```
+  // returns a simpler enum like .Landscape or .Portrait
+  Device.orientation()
 
-// still returns an enum like .Pad or .Phone
-Device.type()
-```
+  // still returns an enum like .Pad or .Phone
+  Device.type()
+  ```
 
-The *best part* I've added is the ability to get both type *and* orientation in the same call:
+A *great feature* added is the ability to get both type *and* orientation in the same call:
 
-```
-// returns an enum like .PadLandscape or .PhonePortrait
-Device.typeAndOrientation()
-```
+  ```
+  // returns an enum like .PadLandscape or .PhonePortrait
+  Device.typeAndOrientation()
+  ```
+
+...Or an answer to the question "Does this device have a GPS chip init?":
+
+  `hasGPS()` gets the current device's hardware identifier (i.e. "iPhone1,1") and checks that against Apple's data, specifying if that device supported GPS; this is "id-based" GPS checking versus "realtime hardware-based" checking, which is a ***lot*** more involved
+
+  ```
+  // checks GPS capability of the current device's hardware identifier
+  if Device.hasGPS() {
+    // use CoreLocation framework to do GPS stuff
+  } else {
+    // Disable in-app/game GPS features
+    // OR
+    // try and use CoreMotion framework to "emulate" GPS instead
+  }
+  ```
 
 ---
 
-## Examples of Use
+##Some Code Examples
 
-Example checking if an iPad is being used in Landscape mode (because Auto Layout won't let you set constraints different for Portrait and Landscape on an iPad):
+Example checking if an iPad is being used in Landscape mode to layout the GUI (because Auto Layout won't let you set constraints different for Portrait and Landscape on an iPad):
 
 ```
 if Device.typeAndOrientation() == .PadLandscape {
@@ -181,9 +198,9 @@ if Device.typeAndOrientation() == .PadLandscape {
 }
 ```
 
-Example checking if a device is in Landscape or Portrait for deciding if a top logo should stay showing when the keyboard pushes the view up when using Auto Layout:
+Example checking if a device is in Landscape or Portrait, then controlling if a top logo should stay showing when the keyboard pushes the view up when using Auto Layout:
 
-```
+  ```
 	@IBOutlet weak var logoImage: UIImageView!  // some logo image at the top of your view
 	@IBOutlet weak var signInButton: UIButton!  // outlet to the sign-in button in your view
 	...
@@ -214,7 +231,7 @@ Example checking if a device is in Landscape or Portrait for deciding if a top l
 	        }
 	    }
 	}
-```
+  ```
 
 ---
 

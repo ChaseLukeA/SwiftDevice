@@ -20,29 +20,29 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
 
 ***The methods are:***
 
-`Device.type()` - Get the "physical type" (i.e. "iPad")
+`Device.type()` - Get the "physical type" (i.e. "Pad", "TV")
 
-```
+  ```
   TYPE:
     Unspecified
     Phone
     Pad
     TV
     CarPlay
-```
+  ```
 
 `Device.orientation()` - Get the "screen orientation" of the device (i.e. "Landscape")
 
-```
+  ```
   ORIENTATION:
     Unknown
     Portrait
     Landscape
-```
+  ```
 
 `Device.orientationDetail()` - Get the [fully Apple-specified] "screen orientation" of the device (in case you REALLY need to know specifically which direction it was turned, but that doesn't usually matter)
 
-```
+  ```
   UIDeviceOrientation:
     Portrait
     PortraitUpsideDown
@@ -51,11 +51,11 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     FaceUp
     FaceDown
     Unknown
-```
+  ```
 
 `Device.typeAndOrientation()` - Get the "physical type and screen orientation" of the device (i.e. "PhonePortrait", "PadLandscape")
 
-```
+  ```
   TYPE_AND_ORIENTATION:
     UnspecifiedPortrait
     UnspecifiedLandscape
@@ -72,28 +72,28 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
     CarPlayUnknown
     CarPlayPortrait
     CarPlayLandscape
-```
+  ```
 
-`Device.batteryStatus()` - Get the "battery charging status" of the device (i.e. "Charging", "Unplugged")
+`Device.batteryStatus()` - Get the "battery charging status" of the device (i.e. "Charging", "Unplugged"); this depends on the batteryMonitoringEnabled property being set to "true"
 
-```
+  ```
   BATTERY_STATUS:
     Unknown
     Charging
     Full
     Unplugged
-```
+  ```
 
 `Device.batteryLevel()` - Get the "current battery level" of the device (i.e. 75.0)
 
-`Device.proximityToUser()` - Get the "proximity to the user" of proximity sensor (if enabled) of the device (i.e. "CloseToUser")
+`Device.proximityToUser()` - Get the "proximity to the user" of proximity sensor (if enabled) of the device (i.e. "CloseToUser"); this depends on the proximityMonitoringEnabled property being set to "true"
 
-```
+  ```
   PROXIMITY_TO_USER:
     Unknown
     CloseToUser
     AwayFromUser
-```
+  ```
 
 `Device.name()` - Get the "name" of the device, as found in Settings > General > About 
 
@@ -113,7 +113,7 @@ No initialization or declaration is needed to use SwiftDevice. Just use `Device`
 
 ---
 
-There are a few different `.[value]` enums that `Device` uses, which can be used directly with Device.[ENUM_NAME].[value], but aren't required to be
+There are a few different `.[value]` enums that `Device` uses, which can be used directly with `Device.[ENUM_NAME].[value]`, but aren't required to be
 
 You can use these types as an assigned variable:
 

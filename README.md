@@ -170,16 +170,16 @@ With SwiftDevice's `Device` object, you can type this instead:
   Device.type()
   ```
 
-A *great feature* added is the ability to get both type *and* orientation in the same call:
+A ***great feature*** added is the ability to get both type *and* orientation in the same call:
 
   ```
   // returns an enum like .PadLandscape or .PhonePortrait
   Device.typeAndOrientation()
   ```
 
-...Or an answer to the question "Does this device have a GPS chip init?":
+How about an answer to the question "Does this device have a GPS chip in it?":
 
-  `hasGPS()` gets the current device's hardware identifier (i.e. "iPhone1,1") and checks that against Apple's data, specifying if that device supported GPS; this is "id-based" GPS checking versus "realtime hardware-based" checking, which is a ***lot*** more involved
+  `hasGPS()` gets the current device's hardware identifier (i.e. "iPhone1,1") and checks that against Apple's data, specifying if that device supported GPS; this is "id-based" GPS checking versus "realtime hardware-based" checking, which forces you to turn on CoreLocation and start checking numbers, which is a *lot* more involved
 
   ```
   // checks GPS capability of the current device's hardware identifier
@@ -243,14 +243,14 @@ Example checking if a device is in Landscape or Portrait, then controlling if a 
 
 ---
 
-## Quick Start
+##Quick Start
 
 Add to your Xcode project's Podfile:
 
 ```
 use_frameworks!
 
-pod 'SwiftDevice', '0.2.1' 
+pod 'SwiftDevice', '0.2.2' 
 ```
 
 ...Install it to your project:

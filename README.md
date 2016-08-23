@@ -1,4 +1,4 @@
-![SwiftDevice](https://github.com/ChaseLukeA/SwiftDevice/SwiftDevice.jpg)
+![SwiftDevice](https://github.com/ChaseLukeA/SwiftDevice/blob/master/SwiftDevice.jpg)
 
 #SwiftDevice
 

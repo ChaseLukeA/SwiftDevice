@@ -141,6 +141,7 @@ public class Device : NSObject {
      */
     public class func enableBatteryMonitor() -> Bool {
         UIDevice.currentDevice().batteryMonitoringEnabled = true
+        return UIDevice.currentDevice().batteryMonitoringEnabled
     }
     
     /**
@@ -148,6 +149,7 @@ public class Device : NSObject {
      */
     public class func disableBatteryMonitor() -> Bool {
         UIDevice.currentDevice().batteryMonitoringEnabled = true
+        return UIDevice.currentDevice().batteryMonitoringEnabled
     }
 
     /**
@@ -193,6 +195,7 @@ public class Device : NSObject {
      */
     public class func enableProximityMonitor() -> Bool {
         UIDevice.currentDevice().proximityMonitoringEnabled = true
+        return UIDevice.currentDevice().proximityMonitoringEnabled
     }
     
     /**
@@ -200,6 +203,7 @@ public class Device : NSObject {
      */
     public class func disableProximityMonitor() -> Bool {
         UIDevice.currentDevice().proximityMonitoringEnabled = true
+        return UIDevice.currentDevice().proximityMonitoringEnabled
     }
     
     /**

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftDevice'
-  s.version          = '0.3.0'
+  s.version          = '1.0.0'
   s.summary          = "Instantly get detailed information on your iOS device for doing different things in code!"
 
 # This description is used to generate tags and improve search results.
